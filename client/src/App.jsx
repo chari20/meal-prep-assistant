@@ -37,6 +37,8 @@ function App() {
     } 
   }
 
+  console.log(result)
+
   return (
     <div style={{ maxWidth: "600px", margin: "40px auto", padding: "0 20px" }}>
       <h1>🥗 AI Meal Prep Assistant</h1>
@@ -59,11 +61,18 @@ function App() {
 
         <button type="submit">Generate Meal Plan</button>
       </form>
-
-      {result && (
-        <div style={{ marginTop: "30px" }}>
+      {result && result !== "Loading..." && (
+        <div style={{ marginTop: "30px", background: "white", padding: "20px", borderRadius: "8px", border: "1px solid #ddd" }}>
           <h2>Your Meal Plan</h2>
-          <p>{result}</p>
+          <pre style={{ whiteSpace: "pre-wrap", fontFamily: "sans-serif", lineHeight: "1.6" }}>
+            {result}
+          </pre>
+        </div>
+      )}
+
+      {result === "Loading..." && (
+        <div style={{ marginTop: "30px", textAlign: "center", color: "#666" }}>
+          <p>⏳ Generating your meal plan...</p>
         </div>
       )}
     </div>
