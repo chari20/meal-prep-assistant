@@ -75,6 +75,9 @@ function App() {
           <p>⏳ Generating your meal plan...</p>
         </div>
       )}
+      <p style={{ fontSize: "0.8rem", color: "#888", marginTop: "8px" }}>
+        ⚠️ This is a demo app. Please be mindful of usage.
+      </p>
     </div>
   )
 }
