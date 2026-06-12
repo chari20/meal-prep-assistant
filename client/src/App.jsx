@@ -17,10 +17,24 @@ function App() {
 
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    setResult("(AI response will appear here)");
+    setResult("Loading..");
+
+    try {
+      const response = await fetch("http://localhost:3001/api/meal-plan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+      const data = await response.json();
+      setResult(data.mealPlan)
+      
+    } catch (error){
+      setResult("Something went wrong. Is the server running?");
+      console.error(error);
+      
+    } 
   }
 
   return (
