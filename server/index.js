@@ -8,6 +8,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const rateLimit = require('express-rate-limit');
+
+const limiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour
+    max: 3, // max 3 requests per IP per hour
+    message: { mealPlan: 'Too many requests. Please try again in an hour.' }
+});
+
+app.use('/api/meal-plan', limiter);
+
 const client = new Anthropic();
 
 app.get('/', (req, res) => {
