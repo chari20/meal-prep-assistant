@@ -2,11 +2,13 @@ const express = require('express');
 const cors = require('cors')
 require('dotenv').config();
 const Anthropic = require('@anthropic-ai/sdk');
-
 const app = express();
+const { connectDB } = require('./db')
+const userRoute = require('./routes/user.route')
 
 app.use(cors());
 app.use(express.json());
+app.use(userRoute)
 
 const rateLimit = require('express-rate-limit');
 
@@ -63,6 +65,21 @@ Keep it realistic, healthy, and easy to prepare.`;
 
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => [
-    console.log(`Server running on port ${PORT}`)
-])
+async function startServer() {
+    try {
+        const db = await connectDB();
+        app.locals.db = db
+
+        app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`)
+        })
+        
+    } catch (error) {
+        console.error('Failed to start server:', error)
+        process.exit(1)
+        
+    }
+    
+}
+
+startServer();
