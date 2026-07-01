@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 import SelectCuisine from './SelectCuisine';
 import SelectDislikeIngredient from './SelectDislikeIngredient'
 import SelectMealPrepStyle from './SelectMealPrepStyle';
@@ -30,9 +30,43 @@ function reducer(state, action) {
 export default function OnboardingLanding() {
     const [state, dispatch] = useReducer(reducer, initialState)
 
+    const [formData, setFormData] = useState({
+        user_name: "",
+        preferred_cuisine: [],
+        disliked_ingredients: [],
+        meal_prep_style: {
+        prep_time: "",
+        days: 0,
+        meals_per_day: {
+            breakfast: false,
+            lunch: false,
+            dinner: false,
+            snacks: {
+            enabled: false,
+            amount: 0
+            }
+        }
+        },
+        goals: {
+            calories: 0,
+            protein: 0,
+            fiber: 0,
+            carbs: 0
+        },
+    
+})
+
+    function handleUpdate(field, value) {
+        setFormData({ ...formData, [field]: value })
+        console.log('formData updated:', field, value)
+    }
+
     function renderStep() {
         switch(state.step) {
-            case 1: return <SelectCuisine />
+            case 1: return <SelectCuisine
+                data={formData.preferred_cuisine}
+                onUpdate={handleUpdate}
+            />
             case 2: return <SelectDislikeIngredient />
             case 3: return <SelectMealPrepStyle />
             case 4: return <AddFitnessGoal />
