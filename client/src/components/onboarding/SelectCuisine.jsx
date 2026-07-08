@@ -1,11 +1,34 @@
+import { useState } from 'react'
+import { cuisines } from '../../utils/constant'
+
 export default function SelectCuisine({ data, onUpdate }) {
-    console.log("data", data)
+    const [selected, setSelected] = useState(data || [])
+
+    function handleSelect(cuisineName) {
+        let newSelected
+        if (selected.includes(cuisineName)) {
+            newSelected = selected.filter(item => item.id !== cuisineName.id)
+        } else {
+            newSelected = [...selected, cuisineName]
+        }
+        setSelected(newSelected)
+        onUpdate('preferred_cuisine', newSelected)
+    }
+
     return (
-        <div>
-            <h2>Step 1 — Select Cuisine</h2>
-            <button onClick={() => onUpdate('preferred_cuisine', ['Asian', 'Italian'])}>
-                Test Update
-            </button>
+        <div className="cards">
+            {cuisines.map((cuisine) => (
+                <div className="card" key={cuisine.id}>
+                    {cuisine.emoji}
+                    {cuisine.name}
+                    <button onClick={() =>handleSelect(cuisine)}>
+                        +
+                    </button>
+                    
+                </div>
+
+            ))}
+            
         </div>
     )
 }
