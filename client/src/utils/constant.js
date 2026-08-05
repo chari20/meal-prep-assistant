@@ -11,4 +11,23 @@
   { id: 10, name: 'Middle Eastern',emoji: '🧆' },
   { id: 11, name: 'French',        emoji: '🥐' },
   { id: 12, name: 'Korean',        emoji: '🥢' },
+ ]
+
+export const avoidFoods = [
+  { id: 1,  name: 'Dairy',        emoji: '🥛' },
+  { id: 2,  name: 'Gluten',       emoji: '🌾' },
+  { id: 3,  name: 'Pork',         emoji: '🐖' },
+  { id: 4,  name: 'Meat',         emoji: '🥩' },
+  { id: 5,  name: 'Poultry',      emoji: '🍗' },
+  { id: 6,  name: 'Seafood',      emoji: '🐟' },
+  { id: 7,  name: 'Shellfish',    emoji: '🦐' },
+  { id: 8,  name: 'Eggs',         emoji: '🥚' },
+  { id: 9,  name: 'Soy',          emoji: '🫘' },
+  { id: 10, name: 'Peanuts',      emoji: '🥜' },
+  { id: 11, name: 'Tree Nuts',    emoji: '🌰' },
+  { id: 12, name: 'Sesame',       emoji: '🧉' },
+  { id: 13, name: 'Corn',         emoji: '🌽' },
+  { id: 14, name: 'Nightshades',  emoji: '🍆' },
+  { id: 15, name: 'Alcohol',      emoji: '🍷' },
+  { id: 16, name: 'Sugar',        emoji: '🍬' },
 ]
