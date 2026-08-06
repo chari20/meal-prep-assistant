@@ -3,8 +3,12 @@ import { avoidFoods } from "../../utils/constant";
 import Popup from "./Popup";
 
 export default function SelectDislikeIngredient({ data, onUpdate }) {
+    console.log('dislike data', data)
     const [selected, setSelected] = useState(data || [])
+    const [dislikedIngredients, setDislikedIngredients] = useState(avoidFoods)
     const [show, setShow] = useState(false)
+
+
     function handleSelect(cuisineName) {
         let newSelected
         if (selected.some(item => item.id === cuisineName.id)) {
@@ -25,7 +29,7 @@ export default function SelectDislikeIngredient({ data, onUpdate }) {
     
     return (
             <div className="cards">
-                {avoidFoods.map((cuisine) => (
+                {dislikedIngredients.map((cuisine) => (
                     <div
                         className={`card ${isSelected(cuisine) ? 'selected' : ''}`}
                         key={cuisine.id}
@@ -63,7 +67,8 @@ export default function SelectDislikeIngredient({ data, onUpdate }) {
                     }
                 
                 const newSelected = [...selected, newIngredient]
-                setSelected(newSelected)
+                    setSelected(newSelected)
+                    setDislikedIngredients([ ...dislikedIngredients, newIngredient])
                 onUpdate('disliked_ingredients', newSelected) 
                 setShow(false);
             }}

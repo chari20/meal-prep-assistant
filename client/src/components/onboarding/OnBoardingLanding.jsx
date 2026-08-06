@@ -67,7 +67,10 @@ export default function OnboardingLanding() {
                 data={formData.preferred_cuisine}
                 onUpdate={handleUpdate}
             />
-            case 2: return <SelectDislikeIngredient />
+            case 2: return <SelectDislikeIngredient
+                data={formData.disliked_ingredients}
+                onUpdate={handleUpdate}
+            />
             case 3: return <SelectMealPrepStyle />
             case 4: return <AddFitnessGoal />
             default: return <SelectCuisine />
