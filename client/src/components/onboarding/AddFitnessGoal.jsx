@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './SelectMealPrepStyle.module.css';
+import styles from './AddFitnessGoal.module.css';
 import { activity_level } from '../../utils/constant';
 
 export default function AddFitnessGoal({ onUpdate }) {

@@ -1,0 +1,180 @@
+/* ─── Section Label ──────────────────────────────────────────── */
+.section-label {
+  display: block;
+  padding: 0 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1b4332;
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+/* ─── Card Container ─────────────────────────────────────────── */
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* ─── Individual Card ────────────────────────────────────────── */
+.card {
+  width: 30%;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+/* ─── Card Hover ─────────────────────────────────────────────── */
+.card:hover {
+  border-color: #2d6a4f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Label Inside Card ──────────────────────────────────────── */
+.card label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #222;
+}
+
+/* ─── Radio Inside Card ──────────────────────────────────────── */
+.card input[type='radio'] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #2d6a4f;
+  flex-shrink: 0;
+}
+
+/* ─── Selected Card ──────────────────────────────────────────── */
+.card:has(input:checked) {
+  border-color: #2d6a4f;
+  background: #d8f3dc;
+}
+
+/* ─── Form Section ───────────────────────────────────────────── */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 20px 20px;
+}
+
+/* ─── Form Row — side by side inputs ────────────────────────── */
+.form-row {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+/* ─── Form Group — label + input ─────────────────────────────── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1b4332;
+}
+
+/* ─── Number Input ───────────────────────────────────────────── */
+.form-group input[type='number'] {
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group input[type='number']:focus {
+  border-color: #2d6a4f;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+}
+
+/* ─── Dropdown ───────────────────────────────────────────────── */
+.dropdown {
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  background: white;
+  transition: border-color 0.2s ease;
+  color: #222;
+}
+
+.dropdown:focus {
+  border-color: #2d6a4f;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+}
+
+/* ─── Gender Cards — smaller than goal cards ─────────────────── */
+.gender-cards {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding: 0 20px;
+}
+
+.gender-card {
+  flex: 1;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.gender-card:hover {
+  border-color: #2d6a4f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.gender-card label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #222;
+}
+
+.gender-card input[type='radio'] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #2d6a4f;
+  flex-shrink: 0;
+}
+
+.gender-card:has(input:checked) {
+  border-color: #2d6a4f;
+  background: #d8f3dc;
+}
