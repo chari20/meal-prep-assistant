@@ -1,6 +1,7 @@
- # Data Model — Meal Prep Assistant
+# Data Model — Meal Prep Assistant
 
 ## Overview
+
 This document outlines how data is structured and stored for the Meal Prep Assistant application. It covers the user profile, meal preferences, meal plan structure, grocery list, and the AI feedback loop that improves recommendations over time.
 
 ---
@@ -10,6 +11,7 @@ This document outlines how data is structured and stored for the Meal Prep Assis
 **MongoDB** is used as the database for this application.
 
 **Why MongoDB:**
+
 - Data is JSON-based and heavily nested
 - User profiles, meal plans, and preferences are stored as a single document per user
 - Flexible schema allows the data model to evolve as features are added
@@ -58,7 +60,22 @@ Each user is stored as a single document in MongoDB. Below is the full structure
     // Supports metric and imperial — important for international users
     "unit_of_measurement": {
       "weight": "pounds | grams",
-      "liquid": "oz | ml"
+      "liquid": "oz | ml",
+      "height": "ft/in | cm"
+    },
+
+    "body_metrics": {
+      "age": 0,
+      "gender": "male | female",
+      "weight": 0,
+      "height": 0,
+      "activity_level": "sedentary | light | moderate | heavy | athlete"
+    },
+
+    "fitness_goal": {
+      "goal": "lose | maintain | gain",
+      "speed": "fast | moderate | slow",
+      "calorie_adjustment": -1000
     },
 
     // Daily nutrition targets used to evaluate generated meal plans
@@ -91,11 +108,7 @@ Each user is stored as a single document in MongoDB. Below is the full structure
     },
 
     // What the user already has at home — used to reduce grocery list
-    "available_ingredients": [
-      "chicken breast",
-      "rice",
-      "broccoli"
-    ],
+    "available_ingredients": ["chicken breast", "rice", "broccoli"],
 
     // Meals rated 5 stars — passed to Claude to generate similar meals
     "most_preferred_meals": [
@@ -137,11 +150,7 @@ Each user is stored as a single document in MongoDB. Below is the full structure
               "name": "Greek Yogurt Parfait",
               "prep_time": 5,
               "cook_time": 0,
-              "ingredients": [
-                "greek yogurt",
-                "granola",
-                "blueberries"
-              ],
+              "ingredients": ["greek yogurt", "granola", "blueberries"],
               "macros": {
                 "calories": 320,
                 "protein": 22,
@@ -179,19 +188,19 @@ Each user is stored as a single document in MongoDB. Below is the full structure
 
 ## Key Field Reference
 
-| Field | Type | Purpose |
-|---|---|---|
-| `unit_of_measurement` | Object | Supports metric and imperial units |
-| `goals` | Object | Daily nutrition targets for meal plan evaluation |
-| `preferences` | Object | Cuisine loves and dislikes set during onboarding |
-| `meal_prep_style` | Object | Controls days, meals per day, and prep time |
-| `available_ingredients` | Array | Reduces unnecessary grocery list items |
-| `most_preferred_meals` | Array | 5 star meals passed to Claude for better recommendations |
-| `disliked_meals` | Array | Low rated meals Claude avoids recommending |
-| `current_meal_plan` | Object | Active weekly plan with meals, macros, and instructions |
-| `grocery_list` | Object | Auto-generated and categorized for easy shopping |
-| `completed` | Boolean | Tracks whether a meal has been cooked |
-| `rating` | Number or null | Populated after user rates a meal — drives feedback loop |
+| Field                   | Type           | Purpose                                                  |
+| ----------------------- | -------------- | -------------------------------------------------------- |
+| `unit_of_measurement`   | Object         | Supports metric and imperial units                       |
+| `goals`                 | Object         | Daily nutrition targets for meal plan evaluation         |
+| `preferences`           | Object         | Cuisine loves and dislikes set during onboarding         |
+| `meal_prep_style`       | Object         | Controls days, meals per day, and prep time              |
+| `available_ingredients` | Array          | Reduces unnecessary grocery list items                   |
+| `most_preferred_meals`  | Array          | 5 star meals passed to Claude for better recommendations |
+| `disliked_meals`        | Array          | Low rated meals Claude avoids recommending               |
+| `current_meal_plan`     | Object         | Active weekly plan with meals, macros, and instructions  |
+| `grocery_list`          | Object         | Auto-generated and categorized for easy shopping         |
+| `completed`             | Boolean        | Tracks whether a meal has been cooked                    |
+| `rating`                | Number or null | Populated after user rates a meal — drives feedback loop |
 
 ---
 

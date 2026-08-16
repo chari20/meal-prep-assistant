@@ -3,6 +3,7 @@ import SelectCuisine from './SelectCuisine';
 import SelectDislikeIngredient from './SelectDislikeIngredient';
 import SelectMealPrepStyle from './SelectMealPrepStyle';
 import AddFitnessGoal from './AddFitnessGoal';
+import { checkForEmptyValues } from '../../utils/index';
 
 const initialState = { step: 1 };
 
@@ -40,21 +41,20 @@ export default function OnboardingLanding() {
     meal_prep_style: {
       prep_time: '',
       days: 0,
-      meals_per_day: {
-        breakfast: false,
-        lunch: false,
-        dinner: false,
-        snacks: {
-          enabled: false,
-          amount: 0,
-        },
-      },
+      meals_per_day: ['breakfast', 'lunch', 'dinner'],
     },
-    goals: {
-      calories: 0,
-      protein: 0,
-      fiber: 0,
-      carbs: 0,
+    body_metrics: {
+      age: 0,
+      gender: '',
+      weight: 0,
+      height: 0,
+      activity_level: '',
+    },
+
+    fitness_goal: {
+      goal: '',
+      speed: '',
+      calorie_adjustment: 0,
     },
   });
 
@@ -64,10 +64,9 @@ export default function OnboardingLanding() {
   }
 
   function handleNext() {
-    //    if (value == '') {
-    //      setFormError({ ...formError, [field]: true });
-    //    }
-    console.log('formData', formData);
+    const result = checkForEmptyValues(formData);
+    setFormError({ ...formError, [result.emptyPaths]: true });
+    console.log('formData', result.emptyPaths);
     dispatch({ type: 'NEXT_STEP' });
   }
 
