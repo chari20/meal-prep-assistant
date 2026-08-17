@@ -4,6 +4,9 @@ import SelectDislikeIngredient from './SelectDislikeIngredient';
 import SelectMealPrepStyle from './SelectMealPrepStyle';
 import AddFitnessGoal from './AddFitnessGoal';
 import { checkForEmptyValues } from '../../utils/index';
+import { steps } from '../../utils/constant';
+import StepHeader from './StepHeader';
+import './StepHeader.css';
 
 const initialState = { step: 1 };
 
@@ -70,6 +73,24 @@ export default function OnboardingLanding() {
     dispatch({ type: 'NEXT_STEP' });
   }
 
+  async function handleSubmit() {
+    try {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData }),
+      };
+      const response = await fetch(
+        'http://localhost:3001/api/user',
+        requestOptions
+      );
+      const data = await response.json();
+      console.log('User saved:', data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   function renderStep() {
     switch (state.step) {
       case 1:
@@ -107,9 +128,19 @@ export default function OnboardingLanding() {
 
   return (
     <div>
+      <StepHeader
+        currentStep={state.step}
+        totalSteps={4}
+        title={steps[state.step - 1].title}
+        subtitle={steps[state.step - 1].subtitle}
+      />
       {renderStep()}
       <button onClick={() => dispatch({ type: 'PREV_STEP' })}>Back</button>
-      <button onClick={() => handleNext()}>Next</button>
+      {state.step === 4 ? (
+        <button onClick={handleSubmit}>Submit</button>
+      ) : (
+        <button onClick={handleNext}>Next</button>
+      )}
     </div>
   );
 }

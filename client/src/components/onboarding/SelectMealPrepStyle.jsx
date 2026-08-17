@@ -3,9 +3,9 @@ import styles from './SelectMealPrepStyle.module.css';
 
 export default function SelectMealPrepStyle({ onUpdate, formError }) {
   const [selectedMealPrepStyle, setSelectedMealPrepStyle] = useState({
-    prep_time: '', // string — one value "under 30" | "under 1 hour" | "unlimited"
-    days: 0, // number — one value 3 | 5 | 7
-    meals_per_day: [], // array — multiple values ["breakfast", "lunch", "dinner"]
+    prep_time: '',
+    days: 0,
+    meals_per_day: [],
   });
 
   // handles prep_time — sets a string

@@ -39,3 +39,22 @@ export const activity_level = [
   'Heavy Exercise',
   'Athlete',
 ];
+
+export const steps = [
+  {
+    title: 'What flavors inspire you? 🍜',
+    subtitle: 'Pick the cuisines you want in your meal plan',
+  },
+  {
+    title: 'Any foods you dislike or are allergic to? 🚫',
+    subtitle: "Tell us what to avoid so every meal is one you'll love",
+  },
+  {
+    title: 'How much time do you want to spend in the kitchen? ⏱️',
+    subtitle: "Set your schedule and we'll build around your life",
+  },
+  {
+    title: "Let's lock in your goals 💪",
+    subtitle: 'Tell us about yourself so we can build the perfect plan for you',
+  },
+];
